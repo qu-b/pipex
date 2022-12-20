@@ -12,7 +12,7 @@
 
 #include "pipex.h"
 
-void	parent_free(t_pipex *pipex)
+void	free_pip(t_pipex *pipex)
 {
 	int	i;
 

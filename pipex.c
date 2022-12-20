@@ -48,8 +48,7 @@ int	main(int argc, char *argv[], char *envp[])
 	if (pipex.pid2 == 0)
 		second_child(pipex, argv, envp);
 	close_pipes(&pipex);
-	waitpid(pipex.pid1, NULL, 0);
-	waitpid(pipex.pid2, NULL, 0);
-	parent_free(&pipex);
+	wait(0);
+	free_pip(&pipex);
 	return (0);
 }

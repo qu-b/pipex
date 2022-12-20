@@ -48,7 +48,7 @@ void	first_child(t_pipex pipex, char *argv[], char *envp[]);
 void	second_child(t_pipex pipex, char *argv[], char *envp[]);
 
 // Free
-void	parent_free(t_pipex *pipex);
+void	free_pip(t_pipex *pipex);
 void	child_free(t_pipex *pipex);
 
 // Error Handling
