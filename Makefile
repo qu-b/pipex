@@ -24,6 +24,6 @@ clean:
 		$(RM) $(OBJ)
 
 fclean:	clean
-		$(RM) $(NAME)
+		$(RM) $(NAME) $(NAME_BONUS)
 
 re:		fclean all
