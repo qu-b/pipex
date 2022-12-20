@@ -1,10 +1,13 @@
 NAME	=	pipex
+NAME_BONUS = pipex_bonus
 CC		=	gcc
 FLAGS	=	-Wall -Wextra -Werror
 RM		=	rm -rf
 SAN		=	-fsanitize=address -O1 -fno-omit-frame-pointer
 
-SRC		= pipex.c errors.c child_processes.c utils.c ft_split.c free.c \
+SRC		= pipex.c errors.c child_processes.c utils.c ft_split.c free.c 
+
+SRC_BONUS = pipex_bonus.c errors.c child_processes_bonus.c utils.c ft_split.c free.c 
 
 OBJ		= $(SRC:.c=.o)
 
@@ -13,6 +16,9 @@ all:
 
 sanitize:
 		$(CC) $(FLAGS) $(SAN) $(SRC) -o $(NAME)
+
+bonus:	
+		$(CC) $(FLAGS) $(SRC_BONUS) -o $(NAME_BONUS)
 
 clean:
 		$(RM) $(OBJ)

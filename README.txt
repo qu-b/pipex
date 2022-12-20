@@ -77,6 +77,26 @@ Child Processes:
 
 
 
+
+		BONUS
+		First Child
+		Initial state	->	dup2				->	close				->	dup2
+		0		std_in	->	0	std_in			->	0	-				->	0	infile	
+		1		std_out	->	1	tube[1]			->	1	tube[1]			->	1	tube[1]
+
+
+		Middle Child
+		Initial state	->	dup2			->	close				->	dup2
+		0		std_in	->	0	tube[0]		->	0	tube[0]			->	0	tube[0]	
+		1		std_out	->	1	std_out		->	1	-				->	1	tube[1]
+
+		Final Child
+		Initial state	->	dup2			->	close				->	dup2
+		0		std_in	->	0	tube[0]		->	0	tube[0]			->	0	tube[0]	
+		1		std_out	->	1	std_out		->	1	-				->	1	outfile
+
+
+
 	fork() is called again to create second child process.
 
 	Second Child:
