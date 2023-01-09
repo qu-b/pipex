@@ -6,7 +6,7 @@
 /*   By: fcullen <fcullen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 11:36:37 by fcullen           #+#    #+#             */
-/*   Updated: 2022/12/08 11:43:32 by fcullen          ###   ########.fr       */
+/*   Updated: 2023/01/06 15:33:51 by fcullen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,12 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	s3 = (char *)malloc(sizeof(char) * dstsize);
 	if (!s3)
 		return (NULL);
-	while (s1[i] != '\0')
+	while (s1[i])
 	{
 		s3[i] = s1[i];
 		i++;
 	}
-	while (s2[j] != '\0')
+	while (s2[j])
 	{
 		s3[i + j] = s2[j];
 		j++;

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   bonus.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcullen <fcullen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/21 14:06:21 by fcullen           #+#    #+#             */
-/*   Updated: 2023/01/09 15:28:37 by fcullen          ###   ########.fr       */
+/*   Created: 2023/01/09 14:10:26 by fcullen           #+#    #+#             */
+/*   Updated: 2023/01/09 15:43:00 by fcullen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,22 +27,27 @@ int	openfile(char *filename, int mode)
 			return (open(filename, O_RDONLY));
 	}
 	else
-		return (open(filename, O_TRUNC | O_CREAT | O_RDWR, 0000644));
+		return (open(filename, O_CREAT | O_WRONLY | O_TRUNC,
+				S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH));
 }
 
 int	main(int ac, char **av, char **envp)
 {
 	int	fdin;
 	int	fdout;
+	int	i;
 
-	if (ac == 5)
+	i = 2;
+	if (ac >= 5)
 	{
 		fdin = openfile(av[1], INFILE);
-		fdout = openfile(av[4], OUTFILE);
+		fdout = openfile(av[ac - 1], OUTFILE);
 		dup2(fdin, STD_IN);
 		dup2(fdout, STD_OUT);
 		redirect(av[2], envp, fdin);
-		exec(av[3], envp);
+		while (++i < ac - 2)
+			redirect(av[i], envp, fdin);
+		exec(av[i], envp);
 	}
 	else
 		write(STD_ERR, "Invalid number of arguments.\n", 29);
