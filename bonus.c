@@ -6,7 +6,7 @@
 /*   By: fcullen <fcullen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 14:10:26 by fcullen           #+#    #+#             */
-/*   Updated: 2023/01/09 15:43:00 by fcullen          ###   ########.fr       */
+/*   Updated: 2023/01/16 10:51:24 by fcullen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ int	openfile(char *filename, int mode)
 			return (open(filename, O_RDONLY));
 	}
 	else
-		return (open(filename, O_CREAT | O_WRONLY | O_TRUNC,
-				S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH));
+		return (open(filename, O_TRUNC | O_CREAT | O_RDWR, 0000644));
 }
 
 int	main(int ac, char **av, char **envp)
