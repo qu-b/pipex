@@ -6,7 +6,7 @@
 /*   By: fcullen <fcullen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:06:21 by fcullen           #+#    #+#             */
-/*   Updated: 2023/01/09 15:28:37 by fcullen          ###   ########.fr       */
+/*   Updated: 2023/03/20 17:43:33 by fcullen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,13 @@ int	openfile(char *filename, int mode)
 			write(STD_ERR, "pipex: ", 7);
 			write(STD_ERR, filename, ft_strlen(filename));
 			write(STD_ERR, ": No such file or directory\n", 28);
+			return (0);
+		}
+		if (access(filename, R_OK))
+		{
+			write(STD_ERR, "pipex: ", 7);
+			write(STD_ERR, filename, ft_strlen(filename));
+			write(STD_ERR, ": Permission denied\n", 20);
 			return (0);
 		}
 		else
